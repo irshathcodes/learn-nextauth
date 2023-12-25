@@ -9,12 +9,10 @@ export default function Home() {
   const { data: hello } = api.post.hello.useQuery({ text: "from TRPC" });
   const { data: session } = useSession();
 
-  function fetchTest() {
-    fetch("/api/test")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("test data", data);
-      });
+  async function fetchTest() {
+    const res = await fetch("/api/test");
+    const data = await res.json();
+    console.log("test data", data);
   }
 
   return (
