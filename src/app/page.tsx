@@ -4,7 +4,6 @@ import { CreatePost } from "@/app/_components/create-post";
 import { useSession } from "next-auth/react";
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 
 export default function Home() {
   const { data: hello } = api.post.hello.useQuery({ text: "from TRPC" });
