@@ -15,6 +15,12 @@ export default function Home() {
     console.log("test data", data);
   }
 
+  async function fetchNode() {
+    const res = await fetch("/api/node");
+    const data = await res.json();
+    console.log("test node js runtime", data);
+  }
+
   return (
     <main className="container">
       <h1 className="my-10 text-center text-3xl font-bold tracking-tighter">
@@ -34,6 +40,7 @@ export default function Home() {
         </Button>
 
         <Button onClick={fetchTest}>fetch test</Button>
+        <Button onClick={fetchNode}>fetch Node</Button>
       </div>
 
       <CrudShowcase />
