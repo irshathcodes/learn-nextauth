@@ -6,7 +6,7 @@ import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  const { data: hello } = api.post.hello.useQuery({ text: "Hello from TRPC" });
+  const { data: hello } = api.post.hello.useQuery({ text: "from TRPC" });
   const { data: session } = useSession();
 
   return (
@@ -35,13 +35,17 @@ export default function Home() {
 
 function CrudShowcase() {
   const { data: session } = useSession();
+  const { data: posts } = api.post.getPosts.useQuery();
   if (!session?.user) return null;
-  const { data: latestPost } = api.post.getLatest.useQuery();
 
   return (
     <div className="w-full max-w-xs">
-      {latestPost ? (
-        <p className="truncate">Your most recent post: {latestPost.name}</p>
+      {posts?.length ? (
+        <ul className="space-y-4 p-4">
+          {posts.map((post) => (
+            <li key={post.id}> - {post.name}</li>
+          ))}
+        </ul>
       ) : (
         <p>You have no posts yet.</p>
       )}
