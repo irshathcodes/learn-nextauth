@@ -51,6 +51,7 @@ export default function Home() {
 function CrudShowcase() {
   const { data: session } = useSession();
   const { data: posts } = api.post.getPosts.useQuery();
+
   if (!session?.user) return null;
 
   return (
